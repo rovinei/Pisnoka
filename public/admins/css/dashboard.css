@@ -1,0 +1,21 @@
+.img_slide__outer {
+  position: relative;
+  width: 100%;
+}
+
+.img_slide__outer .btnRmSlideImg {
+  position: absolute;
+  display: block;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 1;
+  text-align: center;
+  color: #f8f8f8;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+

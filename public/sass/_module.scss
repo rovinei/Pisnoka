@@ -1,0 +1,121 @@
+
+
+.mobile_global_nav{
+
+	button{
+		background: transparent;
+		outline: none;
+		display: block;
+		padding: 0;
+		margin-right: 15px;
+		border: none;
+		color: $white;
+		font-size: 250%;
+	}
+
+	ul{
+		display: block;
+		position: relative;
+		float: left;
+		width: 100%;
+		text-align: center;
+		list-style-type: none;
+		@include clearfix();
+	}
+
+	.toggle_about_nav img{
+		vertical-align: middle;
+		margin-left: 10px;
+	}
+
+	.toggle_about_nav,
+	a{
+		text-decoration: none;
+		color: $white;
+		font-family: $font_en;
+		width: 100%;
+		display: block;
+		font-size: 100%;
+		line-height: 3.2;
+		font-weight: 500;
+		letter-spacing: -0.5px;
+		text-align: center;
+		cursor: pointer;
+	}
+
+	a:hover{
+		color: lighten($black,70%);
+	}
+
+	ul ul{
+		display: none;
+		width: 100%;
+		margin: 20px 0px;
+		border-top: 1px solid #444;
+		border-left: 1px solid #444;
+		border-right: 1px solid #444;
+		@include clearfix();
+
+		li{
+			display: block;
+			float: left;
+			width: 50%;
+			@include box-sizing(border-box);
+			border-bottom: 1px solid #444;
+
+			&:nth-child(odd){
+				border-right: 1px solid #444;
+			}
+
+			a{
+				font-family: $font_jp;
+			}
+		}
+
+	}
+}
+
+
+.scroll_bottom{
+	position: absolute;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include display-flex();
+    @include justify-content();
+    @include align-items();
+    padding: 10px 0px 50px 0px;
+
+    span{
+    	position: relative;
+    	top: -80%;
+    	display: block;
+    	@include transform-prefix(translateX(50%));
+		margin-left: -54px;
+    	&:hover{
+    		margin-top:10px;
+    	}
+    }
+}
+
+.scroll_bottom span{
+	padding: 7px 15px;
+	cursor: pointer;
+	@include transition-prefix(margin-top .4s ease);
+}
+
+.navbar-brand{
+	padding: 0px !important;
+	max-width: 90px;
+}
+
+.navbar-brand img {
+  display: block;
+  width: 100%;
+  @include prefixer(transform-origin, top left, webkit ms moz);
+  @include prefixer(transform, scale(1), webkit ms moz);
+  @include prefixer(transition, all .1s ease-in-out, webkit ms moz);
+}
+
+

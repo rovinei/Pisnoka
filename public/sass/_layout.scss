@@ -1,0 +1,363 @@
+body.mobile_nav_open{
+	overflow: hidden;
+}
+
+/** Full width container **/
+  /********************/
+.fluid_container{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	@include clearfix();
+}
+
+/** Toggle menu button**/
+  /******************/
+.toggle_menu{
+	display: none;
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 70px;
+	@include box-sizing(border-box);
+
+	div.outer-btn{
+		position: absolute;
+		right: 0;
+		top: 50%;
+		margin-top: -17px;
+		cursor: pointer;
+	}
+
+	span.bar{
+		display: block;
+		height: 2px;
+		width: 25px;
+		background: $black;
+		margin: 10px 0;
+	}
+}
+
+/** Global navigation bar **/
+  /**********************/
+.global_nav{
+	float: right;
+	width: 80%;
+	height: 70px;
+
+	ul{
+		list-style-type: none;
+		display: inline-block;
+		float: right;
+
+		ul{
+			display: inline-block;
+			position: absolute;
+			width: 200px;
+			height: 0;
+			overflow: hidden;
+			top: 70px;
+			left: 50%;
+			margin-left: -100px;
+			padding: 0px;
+			z-index: 99;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+			z-index: 200;
+			@include transition-prefix(height 0.4s ease-in);
+		}
+
+	}
+}
+
+
+/** Global navigation in smartphone and small screen **/
+.mobile_global_nav{
+	display: none;
+	position: fixed;
+	/*overflow: scroll;*/
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	padding: 0px 10px;
+	background: rgba(0,0,0,0.9);
+	z-index: 1100;
+	@include clearfix();
+
+	.button_outer{
+		position: relative;
+		width: 100%;
+		height: 70px;
+
+		.outer{
+			position: relative;
+			right: 0;
+			height: 70px;
+			cursor: pointer;
+			@include clearfix();
+		}
+
+		span{
+			position: absolute;
+			display: block;
+			float: left;
+			height: 2px;
+			width: 25px;
+			background: $white;
+			right: 10px;
+			opacity: 0;
+			margin-top: 30px;
+			@include transition-prefix(all 0.3s ease-in);
+
+		}
+
+		span.bar-1{
+
+			@include transform-prefix(rotate(135deg));
+		}
+
+		span.bar-1.rotate{
+			opacity: 1;
+			@include transform-prefix(rotate(45deg));
+		}
+
+		span.bar-2{
+
+			@include transform-prefix(rotate(-135deg));
+		}
+
+		span.bar-2.rotate{
+			opacity: 1;
+			@include transform-prefix(rotate(-45deg));
+		}
+
+	}
+}
+
+
+/*
+ * PAGE : Mian visual;
+ * SECTION : Top banner;
+ */
+.site_banner{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+	@include background-size(cover);
+	background-position: center center;
+	z-index: 100;
+	@include clearfix();
+
+	.load_banner{
+		position: absolute;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+
+		&.loading{
+			@include background-prefix(#{$white} url(/img/common/icons/img_loader_01.gif) no-repeat center center);
+			z-index: 1;
+		}
+	}
+
+	.banner_inner{
+		position: relative;
+		margin: 0 auto;
+	    width: 100%;
+	    height: 100%;
+	    overflow: hidden;
+	    @include background-size(cover);
+		background-position: center center !important;
+	    @include box-sizing(border-box);
+		@include clearfix();
+
+	}
+
+
+    .banner_list{
+    	visibility: visible;
+    	width: 100%;
+    	height: 100%;
+    	@include position(absolute,0 0 0 0);
+		@include clearfix();
+    }
+
+    .banner_item{
+		width: 100%;
+		display: block;
+		height: 100%;
+		@include position(absolute);
+		@include clearfix();
+	}
+
+    .item_inner{
+		width: 100%;
+		height: 100%;
+		@include background-size(cover);
+		background-position: center center !important;
+		@include position(relative);
+		@include clearfix();
+	}
+
+    .item_title{
+		position: absolute;
+	    height: 100%;
+	    width: 100%;
+	    padding: 0 2%;
+	    @include box-sizing(border-box);
+	    margin: 0 auto;
+	    z-index: 2;
+	    background: rgba(0,0,0,0.5);
+		@include clearfix();
+
+		.title,
+		.slogan,
+		.description{
+			width: 100%;
+			float: left;
+		}
+
+		img{
+			max-width: 100%;
+	    	border: 0;
+	    	vertical-align: bottom;
+		}
+
+		span{
+			display: block;
+			position: relative;
+		    width: 100%;
+			font-size: 400%;
+			color: $white;
+			text-align: center;
+		}
+	}
+
+	.item_img{
+		position: absolute;
+	    z-index: 1;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    @include background-size(cover);
+		background-position: center center;
+		@include transition-prefix(all 20s cubic-bezier(0, 0, 1, 1) 0s);
+		@include transform-prefix(scaleX(1) scaleY(1) scaleZ(1));
+		@include clearfix();
+
+		img{
+			width: 100%;
+			height: auto;
+	    	border: 0;
+	    	@include background-size(cover);
+	    	vertical-align: bottom;
+		}
+	}
+
+	.item_img.img_scale{
+		@include transform-prefix(scaleX(1.7) scaleY(1.7) scaleZ(1));
+	}
+
+
+}
+
+
+.social-icons-subnav{
+    padding-left: 90px;
+}
+
+.menu-init{
+	position: relative;
+	float: left;
+	width: calc(100% - 120px);
+}
+
+.logo-wrapper{
+    position: relative;
+    float: left;
+    padding: 0 15px;
+    @include prefixer(transform, translateY(-20px), webkit ms moz);
+    @include prefixer(transition, all .1s ease-in-out, webkit ms moz);
+
+}
+
+.sticky-nav.navbar-default{
+
+	.logo-wrapper{
+		@include prefixer(transform, translateY(0), webkit ms moz);
+    	@include prefixer(transition, all .1s ease-in-out, webkit ms moz);
+	}
+
+	.navbar-brand img{
+		@include prefixer(transform, scale(0.735), webkit ms moz);
+    	@include prefixer(transition, all .1s ease-in-out, webkit ms moz);
+	}
+
+}
+
+.director_msg{
+	position: relative;
+	width: 100%;
+	padding: 25px;
+	margin-top: 20px;
+	background: #10703c;
+	@include clearfix();
+
+	& > * {
+		display: block;
+		width: 100%;
+		float: left;
+	}
+
+	.heading,
+	h1,h2,h3,h4,h5,h6,
+	span,
+	p{
+		display: block;
+		color: #fff;
+	}
+
+	.heading{
+		text-align: center;
+		font-size: 15px;
+	}
+
+	.avatar{
+		margin: 15px 0;
+		.inner{
+			width: 160px;
+			height: 160px;
+			border: 2px #e3a149 solid;
+			border-radius: 50%;
+			margin: 0 auto;
+			position: relative;
+			background-size: contain;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+		}
+	}
+
+	.name,
+	.position{
+		font-size: 13px;
+		text-align: center;
+	}
+
+	.message_txt{
+		margin-top: 10px;
+		p{
+			font-size: 10.1pt;
+			margin-bottom: 10px;
+			text-align: justify;
+		}
+	}
+
+	.director_profile{
+		display: block;
+		width: 100%;
+	}
+}
