@@ -100,57 +100,56 @@ if (!PISNOKA.main) PISNOKA.main = {};
         banner = $('.banner_inner');
         siteBanner = $('.site_banner');
         /* Function to resize the height of banner to the right aspect ratio */
-        (function() {
+        // (function() {
 
-            bannerWidth = banner.width();
-            console.log("test"+bannerWidth);
-            bannerRatio = 1300 / 640;
+        //     // bannerWidth = banner.width();
+        //     // bannerRatio = 1600 / 800;
 
-            if(bannerWidth <= 768){  //753 === 768 in actual
+        //     // if(bannerWidth <= 767){  //753 === 768 in actual
 
-                banner.css({
-                    "height": "300px",
-                    "min-height": "300px",
-                });
+        //     //     banner.css({
+        //     //         "height": "300px",
+        //     //         "min-height": "300px",
+        //     //     });
 
-            }else{
-                banner.css({
-                    "height": "100%",
-                });
-            }
+        //     // }else{
+        //     //     banner.css({
+        //     //         "height": "100%",
+        //     //     });
+        //     // }
 
-            $(window).resize(function() {
-                winWidth = $(window).width();
-                winHeight = $(window).height();
-                console.log("height: "+winHeight);
-                bannerWidth = banner.width();
+        //     $(window).resize(function() {
+        //         winWidth = $(window).width();
+        //         winHeight = $(window).height();
+        //         console.log("height: "+winHeight);
+        //         bannerWidth = banner.width();
 
-                if(winWidth <= 768){  //753 === 768 in actual
+        //         if(winWidth <= 767){  //753 === 768 in actual
 
-                    banner.css({
-                        "height": "300px",
-                        "min-height": "300px",
-                    });
+        //             banner.css({
+        //                 "height": "300px",
+        //                 "min-height": "300px",
+        //             });
 
-                }/*else if(winWidth > 768 < 1300){
-                    banner.css({
-                        "height": "600px",
-                    });
-                }*/else{
-                    banner.css({
-                        "height": "100%",
-                    });
-                }
+        //         }/*else if(winWidth > 768 < 1300){
+        //             banner.css({
+        //                 "height": "600px",
+        //             });
+        //         }*/else{
+        //             banner.css({
+        //                 "height": "100%",
+        //             });
+        //         }
 
-                /** when window resize => always slideup the mobile navigation **/
-                if (winWidth > 768) {  //753 === 768 in actual
+        //         /** when window resize => always slideup the mobile navigation **/
+        //         if (winWidth > 768) {  //753 === 768 in actual
 
-                    $('.mobile_global_nav').fadeOut(300);
-                    $('.dropdown_ul').fadeOut(300);
-                }
+        //             $('.mobile_global_nav').fadeOut(300);
+        //             $('.dropdown_ul').fadeOut(300);
+        //         }
 
-            });
-        })();
+        //     });
+        // })();
     }
 
     /** Animation for overlay hover **/

@@ -16,6 +16,8 @@ Route::get('/about-us', 'Visitor\PageController@aboutUsPage')->name('visitor.abo
 Route::get('/history', 'Visitor\PageController@historyPage')->name('visitor.history');
 Route::get('/contact', 'Visitor\PageController@contactPage')->name('visitor.contact');
 Route::get('/search/tag', 'Visitor\PageController@searchTag')->name('visitor.tag.search');
+Route::post('/sendmail', 'Visitor\PageController@sendmail')->name('visitor.sendmail');
+Route::get('/thank-you', 'Visitor\PageController@thankyou')->name('visitor.thank_you_page');
 
 Route::get('/projects', 'Visitor\PageController@projectPage')->name('visitor.projects');
 Route::get('/project/{slug}', 'Visitor\PageController@projectDetail')->name('visitor.project.detail');

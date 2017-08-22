@@ -70,7 +70,11 @@
           </h3>
 
           <div style="margin-top: 20px;">
-            <img style="width: 100%;" src="{{ asset('img/recognition/recognition_award.jpg') }}" alt="">
+          @if(isset($certifications) && count($certifications) > 0)
+            @foreach($certifications as $item)
+              <img style="margin-bottom:10px;" style="width: 100%;" src="@if($item->image){{ asset($item->image) }}@endif" alt="{{ $item->title }}">
+            @endforeach
+          @endif
           </div>
       </div>
   </div>

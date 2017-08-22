@@ -90,18 +90,37 @@
       <!-- contact form -->
       <div class="col-md-12 col-xs-12">
         <div class="onStep" data-animation="fadeInUp" data-time="300" id="contact">
-          <form action="#" class="row" id="form-contact" method="post" name="form-contact">
+          <form action="{{ route('visitor.sendmail') }}" class="row" id="form-contact" method="POST" name="form-contact">
+            {{ csrf_field() }}
             <input id="name-contact" name="name" placeholder="your name" type="text"> <input id="email-contact" name="email" placeholder="your e-mail" type="text">
 
             <textarea cols="50" id="message-contact" name="message" placeholder="your enquiry" rows="4"></textarea>
-            <div class="success" id="mail_success">
-              Thank you. Your message has been sent
-            </div>
+            @if(Session::has('mail_success'))
+              <div class="alert alert-success">
+                  <ul>
+                    <li>{{ Session::get('mail_success') }}</li>
+                  </ul>
+              </div>
+            @endif
 
-            <div class="error" id="mail_failed">
-              Error, email not sent
-            </div>
-            <button class="btn-contact" id="send-contact" type="submit">Sent Now</button>
+            @if(Session::has('mail_fail'))
+              <div class="alert alert-danger">
+                  <ul>
+                    <li>{{ Session::get('mail_fail') }}</li>
+                  </ul>
+              </div>
+            @endif
+
+            @if(count($errors) > 0)
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
+            <button class="btn-contact" type="submit">Sent Now</button>
           </form>
         </div>
       </div>

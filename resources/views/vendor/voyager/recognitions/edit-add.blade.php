@@ -87,8 +87,8 @@
 
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                                <i class="voyager-character"></i> Content Title
-                                <span class="panel-desc"> The title for your content</span>
+                                <i class="voyager-character"></i> Title
+                                <span class="panel-desc"> The title for your recognition</span>
                             </h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
@@ -106,7 +106,7 @@
                     <!-- ### CONTENT ### -->
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-book"></i> Content Body</h3>
+                            <h3 class="panel-title"><i class="icon wb-book"></i> Description</h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen" aria-hidden="true"></a>
                             </div>
@@ -115,31 +115,15 @@
                             '_field_name'  => 'body',
                             '_field_trans' => get_field_translations($dataTypeContent, 'body', 'rich_text_box', true)
                         ]) -->
-                        <textarea class="form-control richTextBox" id="richtextbody" name="body" style="border:0px;">@if(isset($dataTypeContent->body)){{ $dataTypeContent->body }}@endif</textarea>
+                        <textarea class="form-control" name="description" >@if(isset($dataTypeContent->description)){{ $dataTypeContent->description }}@endif</textarea>
                     </div><!-- .panel -->
 
-                    <!-- ### EXCERPT ### -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Excerpt <small>Small description of this content</small></h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <!-- @include('voyager::multilingual.input-hidden', [
-                                '_field_name'  => 'excerpt',
-                                '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
-                            ]) -->
-                            <textarea class="form-control" name="excerpt">@if (isset($dataTypeContent->excerpt)){{ $dataTypeContent->excerpt }}@endif</textarea>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-4">
                     <!-- ### DETAILS ### -->
                     <div class="panel panel panel-bordered panel-warning">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-clipboard"></i> Content Details</h3>
+                            <h3 class="panel-title"><i class="icon wb-clipboard"></i> Recognition Details</h3>
                             <div class="panel-actions">
                                 <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
                             </div>
@@ -156,28 +140,7 @@
                                     {{!! isFieldSlugAutoGenerator($dataType, $dataTypeContent, "slug") !!}}
                                     value="@if(isset($dataTypeContent->slug)){{ $dataTypeContent->slug }}@endif">
                             </div>
-                            <div class="form-group">
-                                <label for="name"> Status</label>
-                                <select class="form-control" name="status">
-                                    <option value="PUBLISHED" @if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PUBLISHED'){{ 'selected="selected"' }}@endif>Published</option>
-                                    <option value="DRAFT" @if(isset($dataTypeContent->status) && $dataTypeContent->status == 'DRAFT'){{ 'selected="selected"' }}@endif>Draft</option>
-                                    <option value="PENDING" @if(isset($dataTypeContent->status) && $dataTypeContent->status == 'PENDING'){{ 'selected="selected"' }}@endif>Pending</option>
-                                </select>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="name">Position Section</label>
-                                <select class="form-control" name="section">
-                                    <option value="VISION" @if(isset($dataTypeContent->section) && $dataTypeContent->section == 'VISION'){{ 'selected="selected"' }}@endif>Vision (About us page)</option>
-                                    <option value="WHOWEARE" @if(isset($dataTypeContent->section) && $dataTypeContent->section == 'WHOWEARE'){{ 'selected="selected"' }}@endif>Who we are (About us page)</option>
-                                    <option value="HISTORY" @if(isset($dataTypeContent->section) && $dataTypeContent->section == 'HISTORY'){{ 'selected="selected"' }}@endif>Our History (History page)</option>
-                                    <option value="WHYUS" @if(isset($dataTypeContent->section) && $dataTypeContent->section == 'WHYUS'){{ 'selected="selected"' }}@endif>Why Pisnoka (Home page)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="order">Order</label>
-                                <input class="form-control" type="text" name="order" value="@if(isset($dataTypeContent->order)){{ $dataTypeContent->order }}@endif">
-                            </div>
                             <div class="form-group">
                                 <label for="name">Featured</label>
                                 <input type="checkbox" name="is_featured" @if(isset($dataTypeContent->is_featured) && $dataTypeContent->is_featured){{ 'checked="checked"' }}@endif>
@@ -218,41 +181,6 @@
                         </div>
                     </div>
 
-                    <!-- ### SEO CONTENT ### -->
-                    <div class="panel panel-bordered panel-info">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="icon wb-search"></i> SEO Content</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label for="name">Meta Description</label>
-                                <!-- @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'meta_description',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'meta_description')
-                                ]) -->
-                                <textarea class="form-control" name="meta_description">@if(isset($dataTypeContent->meta_description)){{ $dataTypeContent->meta_description }}@endif</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Meta Keywords</label>
-                                <!-- @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'meta_keywords',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'meta_keywords')
-                                ]) -->
-                                <textarea class="form-control" name="meta_keyword">@if(isset($dataTypeContent->meta_keyword)){{ $dataTypeContent->meta_keyword }}@endif</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">SEO Title</label>
-                                <!-- @include('voyager::multilingual.input-hidden', [
-                                    '_field_name'  => 'seo_title',
-                                    '_field_trans' => get_field_translations($dataTypeContent, 'seo_title')
-                                ]) -->
-                                <input type="text" class="form-control" name="seo_title" placeholder="SEO Title" value="@if(isset($dataTypeContent->seo_title)){{ $dataTypeContent->seo_title }}@endif">
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 

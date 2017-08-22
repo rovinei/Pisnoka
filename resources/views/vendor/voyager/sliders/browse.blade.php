@@ -35,8 +35,8 @@
                                 <tr>
                                     @foreach($dataType->browseRows as $row)
                                     <td>
-                                        @if($row->type == 'image')
-                                            <img src="@if( strpos($data->{$row->field}, 'http://') === false && strpos($data->{$row->field}, 'https://') === false){{ $data->{$row->field} }}@else{{ $data->{$row->field} }}@endif" style="width:100px">
+                                        @if($row->field == 'image')
+                                            <img src="@if($data->image){{ asset($data->image) }}@endif" style="width:100px">
                                         @else
                                             @if(is_field_translatable($data, $row))
                                                 @include('voyager::multilingual.input-hidden', [

@@ -1,5 +1,5 @@
 <div class="item">
-    <div class="gal-home big-img">
+    <div class="gal-home">
         <a href="{{ route('visitor.project.detail', $project->slug) }}">
             <div class="hovereffect">
                 <img alt="imageportofolio" class="img-responsive" src="@if(isset($project->featured_image)){{ asset($project->featured_image) }}@endif">

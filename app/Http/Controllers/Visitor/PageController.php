@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Exception;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Slider;
@@ -16,6 +18,7 @@ use App\Models\Content;
 use TCG\Voyager\Models\Category;
 use TCG\Voyager\Models\Post;
 use TCG\Voyager\Models\Page;
+use Session;
 
 class PageController extends Controller
 {
@@ -39,20 +42,37 @@ class PageController extends Controller
                             ->take(3)
                             ->get();
 
-        $teams = Team::where('is_featured', 1)
-                            ->latest()
-                            ->take(4)
-                            ->get();
+        $teams = Team::where([
+                            ['is_featured', 1],
+                            ['is_director_msg', 0]
+                        ])
+                        ->latest()
+                        ->take(4)
+                        ->get();
 
         $partners = Partner::where('is_featured', 1)
                             ->get();
 
+        $why_us = Content::where([
+                            ['status', 'PUBLISHED'],
+                            ['is_featured', 1],
+                            ['section', 'WHYUS']
+                        ])
+                        ->orderBy('order','asc')
+                        ->get();
+        $director_msg = Team::where([
+                            ['is_featured', 1],
+                            ['is_director_msg', 1]
+                        ])
+                        ->first();
         return view('visitor.pages.index')->with([
             'projects' => $projects,
             'services' => $services,
             'sliders' => $sliders,
             'teams' => $teams,
-            'partners' => $partners
+            'partners' => $partners,
+            'why_us' => $why_us,
+            'director_msg' => $director_msg
         ]);
     }
 
@@ -73,10 +93,13 @@ class PageController extends Controller
             ['section', 'VISION']
         ])->get();
 
-        $teams = Team::where('is_featured', 1)
-                            ->latest()
-                            ->take(4)
-                            ->get();
+        $teams = Team::where([
+                            ['is_featured', 1],
+                            ['is_director_msg', 0]
+                        ])
+                        ->latest()
+                        ->take(4)
+                        ->get();
 
         $partners = Partner::where('is_featured', 1)
                             ->get();
@@ -91,6 +114,7 @@ class PageController extends Controller
 
     public function historyPage(Request $request){
         $teams = Team::where('is_featured', 1)
+                            ->where('is_director_msg', 0)
                             ->latest()
                             ->take(4)
                             ->get();
@@ -112,7 +136,9 @@ class PageController extends Controller
 
 
     public function contactPage(Request $request){
+
         return view('visitor.pages.contact');
+
     }
 
     public function projectPage(Request $request){
@@ -281,5 +307,32 @@ class PageController extends Controller
             'blog_posts' => $blog_posts,
             'tagname' => $tagname
         ]);
+    }
+
+    public function sendmail(Request $request){
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'message' => 'required|min:10'
+        ]);
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $message = $request->input('message');
+
+        if(trim($name) == "" || trim($email) == "" || trim($message) == ""){
+            Session::flash('mail_fail', 'All fields cannot be blank!');
+            return redirect()->back();
+        }
+
+        Mail::to(env('MAIL_FROM_ADDRESS', 'vineiisgood@gmail.com'))
+                    ->send(new ContactMail($name, $email, $message));
+
+        Session::flash('mail_success', 'Thank you for contacting us, We will reply to you soon vis email you provided us. Please keep in touch.');
+        return view('visitor.thank_you');
+    }
+
+    public function thankyou(){
+        return view('visitor.thank_you');
     }
 }

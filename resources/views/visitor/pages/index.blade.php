@@ -69,36 +69,33 @@
             <div class="col-xs-12 col-sm-12 col-md-4">
                 <div class="row">
                     <div class="col-xs-12">
+                    @if(isset($director_msg) && $director_msg !== null)
                         <div class="director_msg">
                             <h3 class="heading">
                                 MESSAGE FROM DIRECTOR
                             </h3>
 
                             <div class="avatar">
-                                <div class="inner" style="background-image: url({{ asset('img/director_profile.jpg') }})">
+                                <div class="inner" style="background-image: url({{ asset('storage/'.$director_msg->avatar_picture) }})">
 
                                 </div>
                             </div>
 
                             <div class="name_position">
                                 <span class="name">
-                                    Mr.SOK SOTHYRA
+                                    {{ title_case($director_msg->fullname) }}
                                 </span>
 
                                 <span class="position">
-                                    MANAGING DIRECTOR
+                                    {{ title_case($director_msg->position) }}
                                 </span>
                             </div>
 
                             <div class="message_txt">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                </p>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                </p>
+                                {!! $director_msg->voice !!}
                             </div>
                         </div>
+                    @endif
                     </div>
                 </div>
             </div>
@@ -142,63 +139,30 @@
 
             <!-- step menu -->
             <div class="onStep" data-animation="fadeInUp" data-time="300">
-
+            @if(isset($why_us) && count($why_us) > 0)
                 <div class="step-mains">
-
-                    <div class="col-md-3 step-main">
+                @foreach($why_us as $key => $item)
+                    <div class="col-md-{{ 12 / count($why_us) }} step-main">
                         <div class="step-main">
-                            <a class="filt-step active" data-filter=".quality"><span>Quality</span></a>
+                            <a class="filt-step @if($key==0){{ 'active' }}@endif" data-filter=".{{ $item->slug }}"><span>{{ title_case($item->title) }}</span></a>
                         </div>
                     </div>
+                @endforeach
 
-                    <div class="col-md-3 step-main">
-                        <div class="step-main">
-                            <a class="filt-step" data-filter=".safe"><span>Safe</span></a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 step-main">
-                        <div class="step-main">
-                            <a class="filt-step" data-filter=".schedule"><span>Schedule</span></a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 step-main">
-                        <div class="step-main">
-                            <a class="filt-step" data-filter=".budget"><span>Budget</span></a>
-                        </div>
-                    </div>
                 </div>
-              <!-- step menu end -->
+                <!-- step menu end -->
 
-              <!-- step content -->
+                <!-- step content -->
                 <div id="step-text" class="col-md-12">
-
-                    <div class="cont quality">
+                    @foreach($why_us as $key => $item)
+                    <div class="cont {{ $item->slug }}">
                         <div class="text-center">
-                            <p>Maecenas justo neque, efficitur sit amet scelerisque eu, ornare a justo. Morbi scelerisque ex ut consequat vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent vel augue rutrum, scelerisque velit non, interdum nisl. Etiam purus lorem, aliquet a eros sit amet, vestibulum finibus augue. Cras egestas neque vitae dui tincidunt, vitae tristique tellus volutpat. Fusce justo ante, interdum in augue in, commodo imperdiet turpis.</p>
+                            {!! $item->body !!}
                         </div>
                     </div>
-
-                    <div class="cont safe">
-                        <div class="text-center">
-                            <p>Etiam purus lorem, aliquet a eros sit amet, vestibulum finibus augue. Cras egestas neque vitae dui tincidunt, vitae tristique tellus volutpat. Fusce justo ante, interdum in augue in, commodo imperdiet turpis. Morbi scelerisque ex ut consequat vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent vel augue rutrum, scelerisque velit non, interdum nisl. Etiam purus lorem, aliquet a eros sit amet, vestibulum finibus augue. Cras egestas neque vitae dui tincidunt, vitae tristique tellus volutpat. Fusce justo ante, interdum in augue in, commodo imperdiet turpis.</p>
-                        </div>
-                    </div>
-
-                    <div class="cont schedule">
-                        <div class="text-center">
-                            <p>Morbi scelerisque ex ut consequat vestibulum. Cras egestas neque vitae dui tincidunt, vitae tristique tellus volutpat. Fusce justo ante, interdum in augue in, commodo imperdiet turpis. Maecenas justo neque, efficitur sit amet scelerisque eu, ornare a justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent vel augue rutrum, scelerisque velit non, interdum nisl. Etiam purus lorem, aliquet a eros sit amet, vestibulum finibus augue. Cras egestas neque vitae dui tincidunt, vitae tristique tellus volutpat. Fusce justo ante, interdum in augue in, commodo imperdiet turpis.</p>
-                        </div>
-                    </div>
-
-                    <div class="cont budget">
-                        <div class="text-center">
-                            <p>Praesent vel augue rutrum, scelerisque velit non, interdum nisl. Fusce justo ante, interdum in augue in, commodo imperdiet turpis. Maecenas justo neque, efficitur sit amet scelerisque eu, ornare a justo. Morbi scelerisque ex ut consequat vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent vel augue rutrum, scelerisque velit non, interdum nisl. Etiam purus lorem, aliquet a eros sit amet, vestibulum finibus augue. Cras egestas neque vitae dui tincidunt, vitae tristique tellus volutpat. Fusce justo ante, interdum in augue in, commodo imperdiet turpis.</p>
-                        </div>
-                    </div>
-
+                    @endforeach
                 </div>
+            @endif
             </div>
             <!-- step content end -->
 
