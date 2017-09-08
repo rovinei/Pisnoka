@@ -18,7 +18,7 @@
                 @endforeach
                 </ul>
                 <div class="scroll_bottom">
-                    <span onclick="PISNOKA.main.SmoothScrollTo('.bot-home-text');"><img src="{{ asset('img/common/icon_scroll_to_bottom_08.png') }}"></span>
+                    <span onclick="PISNOKA.main.SmoothScrollTo('.bot-home-text');"><img src="{{ asset('img/common/double_arrow_down_white.png') }}"></span>
                 </div>
             </div>
 
