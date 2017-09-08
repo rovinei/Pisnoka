@@ -166,7 +166,7 @@
             <div class="col-md-5">
                 <div class="right">
                 <div class="btn-content" >
-                    <a class="link-class " href="#">Let us know</a>
+                    <a class="link-class " href="{{ route('visitor.contact') }}">Let us know</a>
                 </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ $(window).on("load", function() {
   var contactemail = $('#email-contact, input#email-contact');
   var contactmessage = $('#message-contact');
   var contactsent = $('#send-contact');
-  
+
   //form failed succes var
   var successent = $("#mail_success");
   var failedsent = $("#mail_failed");
@@ -164,7 +164,7 @@ $(window).on("load", function() {
       })), !1
     })
   });
-  
+
 
 });
 // HTML document is loaded end

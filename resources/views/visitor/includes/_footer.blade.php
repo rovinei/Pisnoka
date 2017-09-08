@@ -92,15 +92,8 @@
       <div class="col-md-6">
         <div class="right">
           <div class="social-icons">
-            <a href="@if(Voyager::setting('site_fb_acc')){{Voyager::setting('site_fb_acc')}}@endif">
-              <span class="ti-facebook"></span>
-            </a>
-            <a href="@if(Voyager::setting('site_twitter_acc')){{Voyager::setting('site_twitter_acc')}}@endif">
-              <span class="ti-twitter"></span>
-            </a>
-            <a href="@if(Voyager::setting('site_linked_acc')){{Voyager::setting('site_linked_acc')}}@endif">
-              <span class="ti-linkedin"></span>
-            </a>
+            <a href="@if(Voyager::setting('site_fb_acc')){{Voyager::setting('site_fb_acc')}}@endif"><span class="ti-facebook"></span></a>
+                <a href="@if(Voyager::setting('site_youtube_channel')){{Voyager::setting('site_youtube_channel')}}@endif"><span class="ti-youtube"></span></a>
           </div>
         </div>
       </div>
